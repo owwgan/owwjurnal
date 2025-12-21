@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { Loader2 } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 export function HeroIllustration() {
   const [illustrationUrl, setIllustrationUrl] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
 
   useEffect(() => {
     const loadIllustration = async () => {
@@ -63,14 +65,38 @@ export function HeroIllustration() {
   return (
     <div className="relative w-full h-full flex items-center justify-center">
       {/* Floating decorative elements */}
-      <div className="absolute top-4 left-8 w-4 h-4 rounded-full bg-secondary animate-bounce" style={{ animationDelay: '0.5s' }} />
-      <div className="absolute top-16 right-12 w-3 h-3 rounded-full bg-primary animate-bounce" style={{ animationDelay: '1s' }} />
-      <div className="absolute bottom-20 left-4 w-5 h-5 rounded-full bg-accent animate-bounce" style={{ animationDelay: '0.3s' }} />
+      <div 
+        className={cn(
+          "absolute top-4 left-8 w-4 h-4 rounded-full bg-secondary",
+          isImageLoaded ? "animate-bounce opacity-100" : "opacity-0"
+        )} 
+        style={{ animationDelay: '0.5s', transition: 'opacity 0.5s ease-out 0.3s' }} 
+      />
+      <div 
+        className={cn(
+          "absolute top-16 right-12 w-3 h-3 rounded-full bg-primary",
+          isImageLoaded ? "animate-bounce opacity-100" : "opacity-0"
+        )} 
+        style={{ animationDelay: '1s', transition: 'opacity 0.5s ease-out 0.5s' }} 
+      />
+      <div 
+        className={cn(
+          "absolute bottom-20 left-4 w-5 h-5 rounded-full bg-accent",
+          isImageLoaded ? "animate-bounce opacity-100" : "opacity-0"
+        )} 
+        style={{ animationDelay: '0.3s', transition: 'opacity 0.5s ease-out 0.7s' }} 
+      />
       
       <img 
         src={illustrationUrl} 
         alt="Mahasiswa mencari jurnal akademik"
-        className="w-full max-w-md h-auto drop-shadow-xl rounded-2xl"
+        className={cn(
+          "w-full max-w-md h-auto drop-shadow-xl rounded-2xl transition-all duration-700 ease-out",
+          isImageLoaded 
+            ? "opacity-100 scale-100 translate-y-0" 
+            : "opacity-0 scale-95 translate-y-4"
+        )}
+        onLoad={() => setIsImageLoaded(true)}
       />
     </div>
   );
