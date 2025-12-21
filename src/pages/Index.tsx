@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { HeroSection } from '@/components/HeroSection';
 import { HowItWorks } from '@/components/HowItWorks';
+import { StatsCounter } from '@/components/StatsCounter';
 import { SearchFilters } from '@/components/SearchFilters';
 import { SearchResults } from '@/components/SearchResults';
 import { ThesisRecommendation } from '@/components/ThesisRecommendation';
@@ -77,6 +78,9 @@ const Index = () => {
 
       {/* How It Works - only show when not searched */}
       {!isSearched && <HowItWorks />}
+
+      {/* Stats Counter */}
+      {!isSearched && <StatsCounter />}
 
       {/* AI Recommendation */}
       <ThesisRecommendation />
