@@ -1,4 +1,82 @@
+import { useState, useEffect } from 'react';
+import { supabase } from '@/integrations/supabase/client';
+import { Loader2 } from 'lucide-react';
+
 export function HeroIllustration() {
+  const [illustrationUrl, setIllustrationUrl] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const loadIllustration = async () => {
+      // Check localStorage cache first
+      const cached = localStorage.getItem('hero-illustration-url');
+      if (cached) {
+        setIllustrationUrl(cached);
+        setIsLoading(false);
+        return;
+      }
+
+      try {
+        console.log('Fetching illustration from edge function...');
+        const { data, error: fnError } = await supabase.functions.invoke('generate-illustration');
+
+        if (fnError) {
+          console.error('Function error:', fnError);
+          throw fnError;
+        }
+
+        if (data?.imageUrl) {
+          console.log('Illustration loaded:', data.imageUrl);
+          setIllustrationUrl(data.imageUrl);
+          localStorage.setItem('hero-illustration-url', data.imageUrl);
+        } else {
+          throw new Error('No image URL in response');
+        }
+      } catch (err) {
+        console.error('Error loading illustration:', err);
+        setError('Failed to load illustration');
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadIllustration();
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div className="relative w-full h-full flex items-center justify-center min-h-[300px]">
+        <div className="flex flex-col items-center gap-4">
+          <Loader2 className="w-12 h-12 text-primary animate-spin" />
+          <p className="text-muted-foreground text-sm">Generating illustration...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error || !illustrationUrl) {
+    // Fallback to simple SVG illustration
+    return <FallbackIllustration />;
+  }
+
+  return (
+    <div className="relative w-full h-full flex items-center justify-center">
+      {/* Floating decorative elements */}
+      <div className="absolute top-4 left-8 w-4 h-4 rounded-full bg-secondary animate-bounce" style={{ animationDelay: '0.5s' }} />
+      <div className="absolute top-16 right-12 w-3 h-3 rounded-full bg-primary animate-bounce" style={{ animationDelay: '1s' }} />
+      <div className="absolute bottom-20 left-4 w-5 h-5 rounded-full bg-accent animate-bounce" style={{ animationDelay: '0.3s' }} />
+      
+      <img 
+        src={illustrationUrl} 
+        alt="Mahasiswa mencari jurnal akademik"
+        className="w-full max-w-md h-auto drop-shadow-xl rounded-2xl"
+      />
+    </div>
+  );
+}
+
+function FallbackIllustration() {
   return (
     <div className="relative w-full h-full flex items-center justify-center">
       {/* Floating decorative elements */}
