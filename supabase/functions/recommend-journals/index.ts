@@ -13,16 +13,48 @@ serve(async (req) => {
   try {
     const { thesisTitle, researchType } = await req.json();
 
-    if (!thesisTitle) {
+    // Input validation - length and type checks
+    if (!thesisTitle || typeof thesisTitle !== 'string') {
       return new Response(
         JSON.stringify({ error: "Judul skripsi diperlukan" }),
         { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
 
+    // Length validation (max 500 characters)
+    if (thesisTitle.length > 500) {
+      return new Response(
+        JSON.stringify({ error: "Judul skripsi maksimal 500 karakter" }),
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    // Research type validation
+    const validResearchTypes = ['kualitatif', 'kuantitatif', 'mixed'];
+    if (researchType && !validResearchTypes.includes(researchType)) {
+      return new Response(
+        JSON.stringify({ error: "Jenis penelitian tidak valid" }),
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    // Sanitize thesisTitle - trim and remove potential XSS characters
+    const sanitizedTitle = thesisTitle.trim().replace(/[<>]/g, '');
+    
+    if (sanitizedTitle.length === 0) {
+      return new Response(
+        JSON.stringify({ error: "Judul skripsi tidak boleh kosong" }),
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
     if (!LOVABLE_API_KEY) {
-      throw new Error("LOVABLE_API_KEY is not configured");
+      console.error("LOVABLE_API_KEY is not configured");
+      return new Response(
+        JSON.stringify({ error: "Layanan tidak tersedia" }),
+        { status: 503, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
     }
 
     const researchTypeLabel = researchType === 'mixed' ? 'mixed method' : researchType;
@@ -36,7 +68,7 @@ Tugasmu:
 
 Gunakan bahasa Indonesia yang mudah dipahami mahasiswa.`;
 
-    const userPrompt = `Judul Skripsi: "${thesisTitle}"
+    const userPrompt = `Judul Skripsi: "${sanitizedTitle}"
 Jenis Penelitian: ${researchTypeLabel}
 
 Berikan analisis singkat tentang topik skripsi ini dan rekomendasikan 5 jurnal pendukung yang relevan.
@@ -54,7 +86,7 @@ Balas dengan format JSON seperti ini:
       "source": "sinta",
       "sintaAccreditation": "S2",
       "language": "id",
-      "researchType": "${researchType}",
+      "researchType": "${researchType || 'kualitatif'}",
       "relevanceScore": 95
     }
   ]
@@ -67,7 +99,7 @@ Catatan:
 - researchType: kualitatif, kuantitatif, atau mixed
 - relevanceScore: 0-100 menunjukkan seberapa relevan jurnal dengan skripsi`;
 
-    console.log("Calling Lovable AI for thesis:", thesisTitle);
+    console.log("Calling Lovable AI for thesis (sanitized):", sanitizedTitle.substring(0, 50) + "...");
 
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
@@ -137,11 +169,10 @@ Catatan:
     );
 
   } catch (error) {
+    // Log detailed error for debugging, return generic message to client
     console.error("Error in recommend-journals:", error);
     return new Response(
-      JSON.stringify({ 
-        error: error instanceof Error ? error.message : "Terjadi kesalahan" 
-      }),
+      JSON.stringify({ error: "Terjadi kesalahan, silakan coba lagi" }),
       { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
     );
   }
