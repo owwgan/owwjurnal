@@ -3,6 +3,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { WaveDivider } from './WaveDivider';
 import { useTypingEffect } from '@/hooks/useTypingEffect';
+import { useParallax } from '@/hooks/useParallax';
 
 interface HeroSectionProps {
   searchQuery: string;
@@ -19,6 +20,8 @@ const placeholderPhrases = [
 ];
 
 export function HeroSection({ searchQuery, onSearchChange, onSearch }: HeroSectionProps) {
+  const scrollY = useParallax();
+  
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter') onSearch();
   };
@@ -33,40 +36,73 @@ export function HeroSection({ searchQuery, onSearchChange, onSearch }: HeroSecti
   return (
     <section className="relative">
       <div className="bg-gradient-animated py-20 md:py-28 relative overflow-hidden">
-        {/* Decorative floating elements */}
-        <div className="absolute top-10 left-10 animate-float">
+        {/* Decorative floating elements with parallax */}
+        <div 
+          className="absolute top-10 left-10 animate-float transition-transform duration-100"
+          style={{ transform: `translateY(${scrollY * 0.15}px)` }}
+        >
           <Star className="h-8 w-8 text-primary-foreground/30" />
         </div>
-        <div className="absolute top-20 right-20 animate-float" style={{ animationDelay: '1s' }}>
+        <div 
+          className="absolute top-20 right-20 animate-float transition-transform duration-100"
+          style={{ transform: `translateY(${scrollY * 0.25}px)`, animationDelay: '1s' }}
+        >
           <Sparkles className="h-10 w-10 text-primary-foreground/40" />
         </div>
-        <div className="absolute bottom-32 left-1/4 animate-float" style={{ animationDelay: '0.5s' }}>
+        <div 
+          className="absolute bottom-32 left-1/4 animate-float transition-transform duration-100"
+          style={{ transform: `translateY(${scrollY * 0.1}px)`, animationDelay: '0.5s' }}
+        >
           <BookOpen className="h-6 w-6 text-primary-foreground/30" />
         </div>
-        <div className="absolute top-1/2 right-10 animate-wiggle">
+        <div 
+          className="absolute top-1/2 right-10 animate-wiggle transition-transform duration-100"
+          style={{ transform: `translateY(${scrollY * 0.3}px)` }}
+        >
           <div className="w-4 h-4 rounded-full bg-primary-foreground/20" />
         </div>
 
-        {/* Additional floating elements */}
-        <div className="absolute top-32 left-[15%] animate-float-slow" style={{ animationDelay: '2s' }}>
+        {/* Additional floating elements with parallax */}
+        <div 
+          className="absolute top-32 left-[15%] animate-float-slow transition-transform duration-100"
+          style={{ transform: `translateY(${scrollY * 0.2}px)`, animationDelay: '2s' }}
+        >
           <GraduationCap className="h-7 w-7 text-primary-foreground/25" />
         </div>
-        <div className="absolute bottom-20 right-[20%] animate-float" style={{ animationDelay: '1.5s' }}>
+        <div 
+          className="absolute bottom-20 right-[20%] animate-float transition-transform duration-100"
+          style={{ transform: `translateY(${scrollY * 0.35}px)`, animationDelay: '1.5s' }}
+        >
           <Lightbulb className="h-6 w-6 text-primary-foreground/35" />
         </div>
-        <div className="absolute top-[40%] left-[8%] animate-float-slow" style={{ animationDelay: '0.8s' }}>
+        <div 
+          className="absolute top-[40%] left-[8%] animate-float-slow transition-transform duration-100"
+          style={{ transform: `translateY(${scrollY * 0.18}px)`, animationDelay: '0.8s' }}
+        >
           <Award className="h-8 w-8 text-primary-foreground/20" />
         </div>
-        <div className="absolute bottom-[35%] right-[8%] animate-pulse-soft">
+        <div 
+          className="absolute bottom-[35%] right-[8%] animate-pulse-soft transition-transform duration-100"
+          style={{ transform: `translateY(${scrollY * 0.4}px)` }}
+        >
           <Circle className="h-5 w-5 text-primary-foreground/25 fill-primary-foreground/10" />
         </div>
-        <div className="absolute top-16 left-[40%] animate-float" style={{ animationDelay: '2.5s' }}>
+        <div 
+          className="absolute top-16 left-[40%] animate-float transition-transform duration-100"
+          style={{ transform: `translateY(${scrollY * 0.12}px)`, animationDelay: '2.5s' }}
+        >
           <div className="w-3 h-3 rounded-full bg-primary-foreground/15" />
         </div>
-        <div className="absolute bottom-24 left-[60%] animate-float-slow" style={{ animationDelay: '1.2s' }}>
+        <div 
+          className="absolute bottom-24 left-[60%] animate-float-slow transition-transform duration-100"
+          style={{ transform: `translateY(${scrollY * 0.28}px)`, animationDelay: '1.2s' }}
+        >
           <div className="w-2 h-2 rounded-full bg-primary-foreground/20" />
         </div>
-        <div className="absolute top-1/3 right-[25%] animate-spin-slow opacity-20">
+        <div 
+          className="absolute top-1/3 right-[25%] animate-spin-slow opacity-20 transition-transform duration-100"
+          style={{ transform: `translateY(${scrollY * 0.22}px)` }}
+        >
           <div className="w-16 h-16 rounded-full border-2 border-dashed border-primary-foreground/30" />
         </div>
 
