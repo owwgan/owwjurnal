@@ -6,7 +6,7 @@ export function StatsCounter() {
   const { count, elementRef, hasStarted } = useCountUp({ end: 10000, duration: 2000 });
 
   return (
-    <section className="py-16 bg-card-yellow">
+    <section id="stats" className="py-16 bg-card-yellow">
       <div className="container mx-auto px-4">
         <div 
           ref={elementRef}

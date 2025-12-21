@@ -1,11 +1,11 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { HeroSection } from '@/components/HeroSection';
 import { HowItWorks } from '@/components/HowItWorks';
 import { StatsCounter } from '@/components/StatsCounter';
 import { SearchFilters } from '@/components/SearchFilters';
 import { SearchResults } from '@/components/SearchResults';
 import { ThesisRecommendation } from '@/components/ThesisRecommendation';
-import { StickyNavbar } from '@/components/StickyNavbar';
+import { Navbar } from '@/components/Navbar';
 import { SearchFilters as SearchFiltersType, Journal } from '@/types/journal';
 import { searchJournals } from '@/lib/mock-journals';
 import { Heart } from 'lucide-react';
@@ -51,7 +51,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <StickyNavbar onSearchClick={scrollToTop} />
+      <Navbar onSearchClick={scrollToTop} />
       
       <HeroSection 
         searchQuery={searchQuery}
