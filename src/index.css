@@ -151,11 +151,47 @@
     background: var(--gradient-hero);
   }
 
+  /* Gradient text for logo */
   .text-gradient {
     background: var(--gradient-primary);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+  }
+
+  .text-gradient-hero {
+    background: linear-gradient(135deg, hsl(var(--primary-foreground)) 0%, hsl(45 93% 85%) 50%, hsl(var(--primary-foreground)) 100%);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradient-text-shift 4s ease infinite;
+  }
+
+  @keyframes gradient-text-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  /* Animated gradient background */
+  .bg-gradient-animated {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--hero-pink)) 0%,
+      hsl(330 85% 55%) 25%,
+      hsl(var(--hero-pink)) 50%,
+      hsl(350 80% 60%) 75%,
+      hsl(var(--hero-pink)) 100%
+    );
+    background-size: 400% 400%;
+    animation: gradient-bg-shift 15s ease infinite;
+  }
+
+  @keyframes gradient-bg-shift {
+    0%, 100% { background-position: 0% 50%; }
+    25% { background-position: 50% 100%; }
+    50% { background-position: 100% 50%; }
+    75% { background-position: 50% 0%; }
   }
 
   .bg-hero-pink {
@@ -182,6 +218,16 @@
   .shadow-playful {
     box-shadow: 6px 6px 0 hsl(var(--foreground));
   }
+
+  /* Animation delays for stagger effect */
+  .delay-100 { animation-delay: 100ms; }
+  .delay-200 { animation-delay: 200ms; }
+  .delay-300 { animation-delay: 300ms; }
+  .delay-400 { animation-delay: 400ms; }
+  .delay-500 { animation-delay: 500ms; }
+  .delay-600 { animation-delay: 600ms; }
+  .delay-700 { animation-delay: 700ms; }
+  .delay-800 { animation-delay: 800ms; }
 
   /* Subtle Neon Glow Effects */
   .text-glow-subtle {
@@ -229,5 +275,31 @@
 
   .box-glow-hover:hover {
     box-shadow: 0 0 20px hsl(var(--hero-pink) / 0.3);
+  }
+
+  /* Enhanced card hover effects */
+  .card-hover-glow {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .card-hover-glow:hover {
+    box-shadow: 
+      8px 8px 0 hsl(var(--foreground)),
+      0 0 30px hsl(var(--hero-pink) / 0.25);
+    transform: translateY(-4px) rotate(1deg);
+  }
+
+  /* Icon rotation on hover */
+  .icon-hover-rotate {
+    transition: transform 0.3s ease;
+  }
+
+  .group:hover .icon-hover-rotate {
+    transform: rotate(12deg) scale(1.1);
+  }
+
+  /* Opacity animation for stagger */
+  .opacity-0-initial {
+    opacity: 0;
   }
 }
