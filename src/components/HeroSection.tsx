@@ -54,7 +54,7 @@ export function HeroSection({
                   <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
                   <Input type="text" placeholder="Cari judul, penulis, atau kata kunci..." value={searchQuery} onChange={e => onSearchChange(e.target.value)} onKeyDown={handleKeyDown} className="pl-12 h-14 text-lg bg-muted/30 border-0 rounded-2xl focus-visible:ring-2 focus-visible:ring-primary" />
                 </div>
-                <Button onClick={onSearch} size="lg" className="h-14 px-8 bg-secondary hover:bg-secondary/90 text-secondary-foreground rounded-2xl text-lg font-bold shadow-md transition-all hover:scale-105">
+                <Button onClick={onSearch} size="lg" className="h-14 px-8 bg-secondary hover:bg-secondary/90 text-secondary-foreground rounded-2xl text-lg font-bold shadow-md transition-all hover:scale-105 hover:shadow-[0_0_25px_hsl(var(--button-orange)/0.5)]">
                   <Search className="mr-2 h-5 w-5" />
                   Cari!
                 </Button>
