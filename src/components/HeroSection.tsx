@@ -42,7 +42,7 @@ export function HeroSection({
           <div className="max-w-3xl mx-auto text-center">
             {/* Logo */}
             <h1 className="text-5xl md:text-7xl font-black mb-4 text-primary-foreground tracking-tight">
-              OwwJurnal > 
+              OwwJurnal
             </h1>
             
             <p className="text-xl md:text-2xl text-primary-foreground/90 mb-10 font-medium">
