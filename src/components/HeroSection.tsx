@@ -45,9 +45,7 @@ export function HeroSection({
               OwwJurnal
             </h1>
             
-            <p className="text-xl md:text-2xl text-primary-foreground/90 mb-10 font-medium">
-              Platform pencarian jurnal favorit mahasiswa Indonesia!
-            </p>
+            <p className="text-xl md:text-2xl text-primary-foreground/90 mb-10 font-medium">Platform pencarian jurnal yang memudahkan mahasiswa Indonesia!</p>
 
             {/* Search Bar - Playful style */}
             <div className="bg-card rounded-3xl p-3 border-thick shadow-playful max-w-2xl mx-auto">
