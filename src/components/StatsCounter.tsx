@@ -1,5 +1,5 @@
 import { useCountUp } from '@/hooks/useCountUp';
-import { BookOpen, Database, Users } from 'lucide-react';
+import { BookOpen } from 'lucide-react';
 
 const stats = [
   {
@@ -7,18 +7,6 @@ const stats = [
     value: 10000,
     suffix: '+',
     label: 'Jurnal Tersedia',
-  },
-  {
-    icon: Database,
-    value: 5,
-    suffix: '',
-    label: 'Sumber Database',
-  },
-  {
-    icon: Users,
-    value: 1000,
-    suffix: '+',
-    label: 'Mahasiswa Terbantu',
   },
 ];
 
