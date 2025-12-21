@@ -23,7 +23,7 @@ const steps = [
 
 export function HowItWorks() {
   return (
-    <section className="py-16 bg-body-mustard">
+    <section id="how-it-works" className="py-16 bg-body-mustard">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground opacity-0-initial animate-fade-in-up">
           Cara Pakainya Gampang! 🎯
