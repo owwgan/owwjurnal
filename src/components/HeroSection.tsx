@@ -82,7 +82,7 @@ export function HeroSection({
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             {/* Logo with gradient text */}
-            <h1 className="text-5xl md:text-7xl font-black mb-4 tracking-tight text-gradient-hero glow-pulse opacity-0-initial animate-fade-in-up">
+            <h1 className="text-5xl md:text-7xl font-black mb-4 tracking-tight text-primary-foreground text-glow-subtle glow-pulse opacity-0-initial animate-fade-in-up">
               OwwJurnal
             </h1>
             
