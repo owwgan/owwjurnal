@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { HeroSection } from '@/components/HeroSection';
 import { HowItWorks } from '@/components/HowItWorks';
 import { StatsCounter } from '@/components/StatsCounter';
 import { SearchFilters } from '@/components/SearchFilters';
 import { SearchResults } from '@/components/SearchResults';
 import { ThesisRecommendation } from '@/components/ThesisRecommendation';
+import { StickyNavbar } from '@/components/StickyNavbar';
 import { SearchFilters as SearchFiltersType, Journal } from '@/types/journal';
 import { searchJournals } from '@/lib/mock-journals';
 import { Heart } from 'lucide-react';
@@ -44,8 +45,14 @@ const Index = () => {
     setIsSearched(true);
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <div className="min-h-screen bg-background">
+      <StickyNavbar onSearchClick={scrollToTop} />
+      
       <HeroSection 
         searchQuery={searchQuery}
         onSearchChange={setSearchQuery}
