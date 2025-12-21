@@ -182,4 +182,52 @@
   .shadow-playful {
     box-shadow: 6px 6px 0 hsl(var(--foreground));
   }
+
+  /* Subtle Neon Glow Effects */
+  .text-glow-subtle {
+    text-shadow: 
+      0 0 10px rgba(255, 255, 255, 0.3),
+      0 0 20px hsl(var(--hero-pink) / 0.2),
+      0 0 40px hsl(var(--hero-pink) / 0.1);
+  }
+
+  .text-glow-soft {
+    text-shadow: 
+      0 0 8px rgba(255, 255, 255, 0.4),
+      0 0 16px hsl(var(--hero-pink) / 0.15);
+  }
+
+  /* Gentle pulse animation - very slow */
+  .glow-pulse {
+    animation: glow-pulse 4s ease-in-out infinite;
+  }
+
+  @keyframes glow-pulse {
+    0%, 100% {
+      text-shadow: 
+        0 0 10px rgba(255, 255, 255, 0.3),
+        0 0 20px hsl(var(--hero-pink) / 0.2);
+    }
+    50% {
+      text-shadow: 
+        0 0 15px rgba(255, 255, 255, 0.4),
+        0 0 30px hsl(var(--hero-pink) / 0.25),
+        0 0 45px hsl(var(--hero-pink) / 0.1);
+    }
+  }
+
+  /* Box glow for cards/elements */
+  .box-glow-subtle {
+    box-shadow: 
+      6px 6px 0 hsl(var(--foreground)),
+      0 0 20px hsl(var(--hero-pink) / 0.15);
+  }
+
+  .box-glow-hover {
+    transition: box-shadow 0.3s ease;
+  }
+
+  .box-glow-hover:hover {
+    box-shadow: 0 0 20px hsl(var(--hero-pink) / 0.3);
+  }
 }
