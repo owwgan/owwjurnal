@@ -41,14 +41,14 @@ export function HeroSection({
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             {/* Logo */}
-            <h1 className="text-5xl md:text-7xl font-black mb-4 text-primary-foreground tracking-tight">
+            <h1 className="text-5xl md:text-7xl font-black mb-4 text-primary-foreground tracking-tight text-glow-subtle glow-pulse">
               OwwJurnal
             </h1>
             
-            <p className="text-xl md:text-2xl text-primary-foreground/90 mb-10 font-medium">Platform pencarian jurnal yang memudahkan mahasiswa Indonesia!</p>
+            <p className="text-xl md:text-2xl text-primary-foreground/90 mb-10 font-medium text-glow-soft">Platform pencarian jurnal yang memudahkan mahasiswa Indonesia!</p>
 
             {/* Search Bar - Playful style */}
-            <div className="bg-card rounded-3xl p-3 border-thick shadow-playful max-w-2xl mx-auto">
+            <div className="bg-card rounded-3xl p-3 border-thick box-glow-subtle max-w-2xl mx-auto">
               <div className="flex flex-col sm:flex-row gap-3">
                 <div className="relative flex-1">
                   <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
@@ -63,7 +63,7 @@ export function HeroSection({
 
             {/* Source badges */}
             <div className="flex flex-wrap items-center justify-center gap-2 mt-8">
-              {['Google Scholar', 'SINTA', 'Garuda', 'PubMed', 'arXiv'].map(source => <span key={source} className="px-4 py-2 text-sm font-semibold rounded-full bg-primary-foreground/20 text-primary-foreground border-2 border-primary-foreground/30 backdrop-blur-sm">
+              {['Google Scholar', 'SINTA', 'Garuda', 'PubMed', 'arXiv'].map(source => <span key={source} className="px-4 py-2 text-sm font-semibold rounded-full bg-primary-foreground/20 text-primary-foreground border-2 border-primary-foreground/30 backdrop-blur-sm box-glow-hover">
                   {source}
                 </span>)}
             </div>
