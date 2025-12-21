@@ -2,29 +2,33 @@
 @tailwind components;
 @tailwind utilities;
 
-/* JurnalKu Design System - Modern & Colorful for Students */
+/* OwwJurnal Design System - Super Hello Style */
 
 @layer base {
   :root {
-    --background: 240 20% 99%;
-    --foreground: 240 10% 10%;
+    --background: 45 100% 96%;
+    --foreground: 0 0% 10%;
 
     --card: 0 0% 100%;
-    --card-foreground: 240 10% 10%;
+    --card-foreground: 0 0% 10%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 10%;
+    --popover-foreground: 0 0% 10%;
 
-    --primary: 262 83% 58%;
+    /* Pink/Magenta - Hero */
+    --primary: 330 85% 60%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 199 89% 48%;
+    /* Orange - Buttons */
+    --secondary: 25 95% 55%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 240 10% 96%;
-    --muted-foreground: 240 5% 46%;
+    /* Mustard/Yellow - Body */
+    --muted: 45 93% 85%;
+    --muted-foreground: 0 0% 35%;
 
-    --accent: 340 82% 52%;
+    /* Accent - Coral/Pink */
+    --accent: 350 80% 65%;
     --accent-foreground: 0 0% 100%;
 
     --success: 142 76% 36%;
@@ -36,47 +40,56 @@
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 240 10% 90%;
-    --input: 240 10% 90%;
-    --ring: 262 83% 58%;
+    --border: 0 0% 15%;
+    --input: 0 0% 90%;
+    --ring: 330 85% 60%;
 
-    --radius: 0.75rem;
+    --radius: 1rem;
 
     --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 262 83% 58%;
+    --sidebar-foreground: 0 0% 26%;
+    --sidebar-primary: 330 85% 60%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 262 83% 58%;
+    --sidebar-accent: 45 93% 90%;
+    --sidebar-accent-foreground: 0 0% 10%;
+    --sidebar-border: 0 0% 15%;
+    --sidebar-ring: 330 85% 60%;
 
+    /* Super Hello Colors */
+    --hero-pink: 330 85% 60%;
+    --hero-pink-light: 330 85% 75%;
+    --body-mustard: 45 93% 75%;
+    --body-mustard-light: 45 93% 85%;
+    --card-pink: 330 50% 95%;
+    --card-yellow: 45 93% 92%;
+    --button-orange: 25 95% 55%;
+    
     /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(262 83% 58%) 0%, hsl(199 89% 48%) 100%);
-    --gradient-accent: linear-gradient(135deg, hsl(340 82% 52%) 0%, hsl(262 83% 58%) 100%);
-    --gradient-hero: linear-gradient(180deg, hsl(262 83% 95%) 0%, hsl(199 89% 95%) 50%, hsl(0 0% 100%) 100%);
+    --gradient-primary: linear-gradient(135deg, hsl(330 85% 60%) 0%, hsl(25 95% 55%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(350 80% 65%) 0%, hsl(330 85% 60%) 100%);
+    --gradient-hero: hsl(330 85% 60%);
   }
 
   .dark {
-    --background: 240 10% 6%;
+    --background: 0 0% 8%;
     --foreground: 0 0% 98%;
 
-    --card: 240 10% 10%;
+    --card: 0 0% 12%;
     --card-foreground: 0 0% 98%;
 
-    --popover: 240 10% 10%;
+    --popover: 0 0% 12%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 262 83% 65%;
+    --primary: 330 85% 65%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 199 89% 55%;
+    --secondary: 25 95% 60%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 240 10% 15%;
-    --muted-foreground: 240 5% 65%;
+    --muted: 0 0% 18%;
+    --muted-foreground: 0 0% 65%;
 
-    --accent: 340 82% 60%;
+    --accent: 350 80% 60%;
     --accent-foreground: 0 0% 100%;
 
     --success: 142 76% 45%;
@@ -88,22 +101,30 @@
     --destructive: 0 72% 50%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 240 10% 20%;
-    --input: 240 10% 20%;
-    --ring: 262 83% 65%;
+    --border: 0 0% 25%;
+    --input: 0 0% 20%;
+    --ring: 330 85% 65%;
 
-    --sidebar-background: 240 10% 8%;
+    --sidebar-background: 0 0% 10%;
     --sidebar-foreground: 0 0% 95%;
-    --sidebar-primary: 262 83% 65%;
+    --sidebar-primary: 330 85% 65%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 10% 15%;
+    --sidebar-accent: 0 0% 15%;
     --sidebar-accent-foreground: 0 0% 95%;
-    --sidebar-border: 240 10% 18%;
-    --sidebar-ring: 262 83% 65%;
+    --sidebar-border: 0 0% 20%;
+    --sidebar-ring: 330 85% 65%;
 
-    --gradient-primary: linear-gradient(135deg, hsl(262 83% 65%) 0%, hsl(199 89% 55%) 100%);
-    --gradient-accent: linear-gradient(135deg, hsl(340 82% 60%) 0%, hsl(262 83% 65%) 100%);
-    --gradient-hero: linear-gradient(180deg, hsl(262 83% 15%) 0%, hsl(199 89% 10%) 50%, hsl(240 10% 6%) 100%);
+    --hero-pink: 330 85% 55%;
+    --hero-pink-light: 330 85% 40%;
+    --body-mustard: 45 50% 25%;
+    --body-mustard-light: 45 50% 20%;
+    --card-pink: 330 50% 15%;
+    --card-yellow: 45 50% 15%;
+    --button-orange: 25 95% 55%;
+
+    --gradient-primary: linear-gradient(135deg, hsl(330 85% 65%) 0%, hsl(25 95% 60%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(350 80% 60%) 0%, hsl(330 85% 65%) 100%);
+    --gradient-hero: hsl(330 85% 30%);
   }
 }
 
@@ -135,5 +156,30 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+  }
+
+  .bg-hero-pink {
+    background-color: hsl(var(--hero-pink));
+  }
+
+  .bg-body-mustard {
+    background-color: hsl(var(--body-mustard));
+  }
+
+  .bg-card-pink {
+    background-color: hsl(var(--card-pink));
+  }
+
+  .bg-card-yellow {
+    background-color: hsl(var(--card-yellow));
+  }
+
+  .border-thick {
+    border-width: 3px;
+    border-color: hsl(var(--foreground));
+  }
+
+  .shadow-playful {
+    box-shadow: 6px 6px 0 hsl(var(--foreground));
   }
 }

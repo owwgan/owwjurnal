@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { HeroSection } from '@/components/HeroSection';
+import { HowItWorks } from '@/components/HowItWorks';
 import { SearchFilters } from '@/components/SearchFilters';
 import { SearchResults } from '@/components/SearchResults';
 import { ThesisRecommendation } from '@/components/ThesisRecommendation';
 import { SearchFilters as SearchFiltersType, Journal } from '@/types/journal';
 import { searchJournals } from '@/lib/mock-journals';
+import { Heart } from 'lucide-react';
 
 const Index = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -49,32 +51,45 @@ const Index = () => {
         onSearch={handleSearch}
       />
 
-      <main className="container mx-auto px-4 py-8">
-        {isSearched && (
-          <div className="flex justify-end mb-4">
-            <SearchFilters 
-              filters={filters}
-              onFiltersChange={(newFilters) => {
-                setFilters(newFilters);
-                if (isSearched) handleSearch();
-              }}
-              activeFilterCount={activeFilterCount}
+      {/* Search Results Section */}
+      {isSearched && (
+        <section className="bg-body-mustard py-12">
+          <div className="container mx-auto px-4">
+            <div className="flex justify-end mb-6">
+              <SearchFilters 
+                filters={filters}
+                onFiltersChange={(newFilters) => {
+                  setFilters(newFilters);
+                  if (isSearched) handleSearch();
+                }}
+                activeFilterCount={activeFilterCount}
+              />
+            </div>
+
+            <SearchResults 
+              journals={results}
+              isSearched={isSearched}
+              query={searchQuery}
             />
           </div>
-        )}
+        </section>
+      )}
 
-        <SearchResults 
-          journals={results}
-          isSearched={isSearched}
-          query={searchQuery}
-        />
+      {/* How It Works - only show when not searched */}
+      {!isSearched && <HowItWorks />}
 
-        <ThesisRecommendation />
-      </main>
+      {/* AI Recommendation */}
+      <ThesisRecommendation />
 
-      <footer className="border-t border-border py-6 mt-12">
-        <div className="container mx-auto px-4 text-center text-sm text-muted-foreground">
-          <p>JurnalKu - Platform Pencarian Jurnal untuk Mahasiswa Indonesia</p>
+      {/* Footer */}
+      <footer className="bg-hero-pink py-8">
+        <div className="container mx-auto px-4 text-center">
+          <p className="text-primary-foreground font-semibold flex items-center justify-center gap-2">
+            Dibuat dengan <Heart className="h-5 w-5 fill-current" /> untuk Mahasiswa Indonesia
+          </p>
+          <p className="text-primary-foreground/80 text-sm mt-2">
+            OwwJurnal - Platform Pencarian Jurnal Terlengkap
+          </p>
         </div>
       </footer>
     </div>
