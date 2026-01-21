@@ -48,9 +48,12 @@ export function HeroIllustration() {
 
   if (isLoading) {
     return (
-      <div className="relative w-full h-full flex items-center justify-center min-h-[300px] bg-muted">
+      <div className="relative w-full h-full flex items-center justify-center min-h-[300px] rounded-2xl bg-muted/30">
         <div className="flex flex-col items-center gap-4">
-          <Loader2 className="w-12 h-12 text-primary animate-spin" />
+          <div className="relative">
+            <div className="absolute inset-0 gradient-primary rounded-full blur-xl opacity-30 animate-pulse-glow" />
+            <Loader2 className="w-12 h-12 text-primary animate-spin relative z-10" />
+          </div>
           <p className="text-muted-foreground text-xs font-bold uppercase tracking-wider">
             Generating...
           </p>
@@ -65,14 +68,11 @@ export function HeroIllustration() {
 
   return (
     <div className="relative w-full h-full">
-      {/* Halftone overlay effect */}
-      <div className="absolute inset-0 halftone-pattern opacity-20 pointer-events-none z-10" />
-      
       <img 
         src={illustrationUrl} 
         alt="Mahasiswa mencari jurnal akademik"
         className={cn(
-          "w-full h-auto transition-all duration-500 ease-out",
+          "w-full h-auto rounded-xl transition-all duration-500 ease-out",
           isImageLoaded 
             ? "opacity-100 scale-100" 
             : "opacity-0 scale-95"
@@ -85,84 +85,79 @@ export function HeroIllustration() {
 
 function FallbackIllustration() {
   return (
-    <div className="relative w-full h-full flex items-center justify-center min-h-[280px] bg-muted">
-      {/* Halftone pattern background */}
-      <div className="absolute inset-0 halftone-pattern-lg opacity-30" />
+    <div className="relative w-full h-full flex items-center justify-center min-h-[280px] rounded-2xl bg-gradient-to-br from-primary/5 to-accent/5">
+      {/* Subtle pattern */}
+      <div className="absolute inset-0 pattern-dots opacity-50 rounded-2xl" />
       
-      {/* Main SVG Illustration - Brutalist/Geometric style */}
+      {/* Main SVG Illustration - Soft/Playful style */}
       <svg
         viewBox="0 0 400 350"
         className="w-full max-w-md h-auto"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        {/* Background shapes */}
-        <rect x="50" y="50" width="120" height="120" className="fill-primary/20" />
-        <rect x="230" y="80" width="100" height="100" className="fill-muted stroke-foreground" strokeWidth="3" />
+        {/* Background shapes - soft circles */}
+        <circle cx="100" cy="100" r="60" className="fill-primary/10" />
+        <circle cx="300" cy="120" r="80" className="fill-accent/10" />
+        <circle cx="200" cy="280" r="70" className="fill-warning/10" />
         
-        {/* Desk - geometric */}
-        <rect x="60" y="260" width="280" height="8" className="fill-foreground" />
-        <rect x="80" y="268" width="12" height="50" className="fill-foreground/80" />
-        <rect x="308" y="268" width="12" height="50" className="fill-foreground/80" />
+        {/* Desk - rounded */}
+        <rect x="60" y="260" width="280" height="12" rx="6" className="fill-muted" />
+        <rect x="80" y="272" width="16" height="45" rx="8" className="fill-muted-foreground/20" />
+        <rect x="304" y="272" width="16" height="45" rx="8" className="fill-muted-foreground/20" />
         
-        {/* Laptop - brutalist style */}
-        <rect x="100" y="200" width="150" height="60" className="fill-card stroke-foreground" strokeWidth="3" />
-        <rect x="108" y="208" width="134" height="44" className="fill-primary/30" />
+        {/* Laptop - rounded */}
+        <rect x="100" y="195" width="150" height="65" rx="12" className="fill-card" />
+        <rect x="108" y="203" width="134" height="49" rx="8" className="fill-primary/20" />
         
-        {/* Screen content - code lines */}
-        <rect x="116" y="216" width="50" height="4" className="fill-primary" />
-        <rect x="116" y="226" width="80" height="4" className="fill-foreground/40" />
-        <rect x="116" y="236" width="40" height="4" className="fill-foreground/40" />
+        {/* Screen content - soft lines */}
+        <rect x="120" y="215" width="50" height="5" rx="2.5" className="fill-primary/60" />
+        <rect x="120" y="228" width="80" height="5" rx="2.5" className="fill-foreground/20" />
+        <rect x="120" y="241" width="40" height="5" rx="2.5" className="fill-foreground/20" />
         
         {/* Laptop base */}
-        <rect x="70" y="260" width="210" height="8" className="fill-muted stroke-foreground" strokeWidth="2" />
+        <rect x="70" y="260" width="210" height="8" rx="4" className="fill-muted-foreground/30" />
         
-        {/* Person - geometric/minimal */}
-        <rect x="160" y="100" width="80" height="100" rx="4" className="fill-primary" />
+        {/* Person - Body */}
+        <rect x="155" y="95" width="90" height="105" rx="20" className="fill-primary" />
         
         {/* Person - Head */}
-        <circle cx="200" cy="70" r="35" className="fill-muted stroke-foreground" strokeWidth="3" />
+        <circle cx="200" cy="60" r="40" className="fill-muted" />
         
-        {/* Person - Face features */}
-        <rect x="185" y="60" width="6" height="8" className="fill-foreground" />
-        <rect x="205" y="60" width="6" height="8" className="fill-foreground" />
-        <rect x="190" y="78" width="20" height="3" className="fill-foreground/60" />
+        {/* Person - Face features - cute */}
+        <circle cx="185" cy="55" r="4" className="fill-foreground" />
+        <circle cx="215" cy="55" r="4" className="fill-foreground" />
+        <path d="M190 72 Q200 80 210 72" stroke="currentColor" strokeWidth="3" strokeLinecap="round" className="stroke-foreground/60" fill="none" />
         
         {/* Person - Arms */}
-        <rect x="130" y="140" width="30" height="60" rx="4" className="fill-muted stroke-foreground" strokeWidth="2" />
-        <rect x="240" y="140" width="30" height="60" rx="4" className="fill-muted stroke-foreground" strokeWidth="2" />
+        <rect x="125" y="130" width="30" height="70" rx="15" className="fill-muted" />
+        <rect x="245" y="130" width="30" height="70" rx="15" className="fill-muted" />
         
-        {/* Floating book - geometric */}
+        {/* Floating book - soft */}
         <g className="animate-float">
-          <rect x="300" y="100" width="50" height="65" className="fill-accent stroke-foreground" strokeWidth="2" />
-          <rect x="306" y="110" width="30" height="4" className="fill-background" />
-          <rect x="306" y="120" width="38" height="4" className="fill-background/60" />
-          <rect x="306" y="130" width="24" height="4" className="fill-background/60" />
+          <rect x="295" y="90" width="55" height="70" rx="8" className="fill-accent" />
+          <rect x="303" y="102" width="32" height="5" rx="2.5" className="fill-background/80" />
+          <rect x="303" y="114" width="40" height="5" rx="2.5" className="fill-background/50" />
+          <rect x="303" y="126" width="28" height="5" rx="2.5" className="fill-background/50" />
         </g>
         
-        {/* Floating elements - geometric shapes */}
-        <rect x="320" y="50" width="16" height="16" className="fill-primary animate-float" style={{ animationDelay: '0.5s' }} />
-        <rect x="60" y="140" width="20" height="20" className="fill-accent/60 rotate-45 animate-float" style={{ animationDelay: '0.3s' }} />
+        {/* Floating elements - circles */}
+        <circle cx="330" cy="55" r="10" className="fill-primary animate-float" style={{ animationDelay: '0.5s' }} />
+        <circle cx="65" cy="150" r="12" className="fill-accent/60 animate-float" style={{ animationDelay: '0.3s' }} />
+        <circle cx="350" cy="200" r="8" className="fill-warning animate-bounce-gentle" />
         
-        {/* Plus signs - decorative */}
-        <g className="fill-foreground/30">
-          <rect x="340" y="180" width="16" height="4" />
-          <rect x="346" y="174" width="4" height="16" />
+        {/* Sparkles */}
+        <g className="fill-warning">
+          <path d="M45 90 L48 98 L56 101 L48 104 L45 112 L42 104 L34 101 L42 98 Z" />
         </g>
-        <g className="fill-primary/50">
-          <rect x="40" y="80" width="12" height="3" />
-          <rect x="44.5" y="75.5" width="3" height="12" />
+        <g className="fill-primary/60">
+          <path d="M340 150 L342 155 L347 157 L342 159 L340 164 L338 159 L333 157 L338 155 Z" />
         </g>
         
-        {/* Coffee cup - minimal */}
-        <rect x="280" y="240" width="20" height="20" className="fill-card stroke-foreground" strokeWidth="2" />
-        <rect x="300" y="246" width="8" height="8" rx="4" className="stroke-foreground" strokeWidth="2" fill="none" />
-        
-        {/* Sparkle/star element */}
-        <path 
-          d="M350 140 L354 148 L362 152 L354 156 L350 164 L346 156 L338 152 L346 148 Z" 
-          className="fill-warning"
-        />
+        {/* Coffee cup - cute */}
+        <rect x="278" y="235" width="24" height="25" rx="6" className="fill-card" />
+        <circle cx="302" cy="248" r="6" className="stroke-muted-foreground/40" strokeWidth="2" fill="none" />
+        <path d="M282 232 Q286 226 290 232" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="stroke-muted-foreground/30" fill="none" />
       </svg>
     </div>
   );

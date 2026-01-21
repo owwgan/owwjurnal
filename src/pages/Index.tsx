@@ -61,8 +61,11 @@ const Index = () => {
 
       {/* Search Results Section */}
       {isSearched && (
-        <section className="bg-body-mustard py-12 border-b-4 border-foreground">
-          <div className="container mx-auto px-4">
+        <section className="bg-body-mustard py-12 relative overflow-hidden">
+          {/* Gradient mesh background */}
+          <div className="absolute inset-0 pattern-gradient-mesh pointer-events-none opacity-30" />
+          
+          <div className="container mx-auto px-4 relative z-10">
             <div className="flex justify-end mb-6">
               <SearchFilters 
                 filters={filters}
@@ -92,55 +95,62 @@ const Index = () => {
       {/* AI Recommendation */}
       <ThesisRecommendation />
 
-      {/* Footer - Brutalist Style */}
-      <footer className="bg-foreground py-12 relative overflow-hidden">
-        {/* Halftone pattern */}
-        <div className="absolute inset-0 opacity-10 pointer-events-none">
-          <div className="absolute inset-0 halftone-pattern-lg" style={{ filter: 'invert(1)' }} />
-        </div>
+      {/* Footer - Glassmorphism Style */}
+      <footer className="relative overflow-hidden">
+        {/* Gradient background */}
+        <div className="absolute inset-0 gradient-hero opacity-90" />
         
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="grid md:grid-cols-3 gap-8 items-center">
-            {/* Left - Logo */}
-            <div className="text-center md:text-left">
-              <h3 className="text-2xl font-black text-background tracking-tight">
-                OwwJurnal
-              </h3>
-              <p className="text-xs text-background/60 tracking-[0.15em] uppercase mt-1">
-                Academic Search Platform
-              </p>
-            </div>
-            
-            {/* Center - Made with love */}
-            <div className="text-center">
-              <p className="text-background font-bold flex items-center justify-center gap-2">
-                Dibuat dengan <Heart className="h-5 w-5 fill-primary text-primary" /> untuk
-              </p>
-              <p className="text-background/80 font-black text-lg mt-1">
-                Mahasiswa Indonesia
-              </p>
-            </div>
-            
-            {/* Right - Barcode decoration */}
-            <div className="flex justify-center md:justify-end items-end gap-[2px]">
-              {[8, 16, 4, 12, 8, 4, 16, 12, 4, 8, 16, 4, 12, 8, 16, 4, 8].map((h, i) => (
-                <div 
-                  key={i} 
-                  className="w-[3px] bg-background/30"
-                  style={{ height: `${h * 2}px` }}
-                />
-              ))}
-            </div>
-          </div>
+        {/* Floating shapes */}
+        <div className="absolute top-0 left-1/4 w-40 h-40 bg-background/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 w-56 h-56 bg-background/10 rounded-full blur-3xl" />
+        
+        <div className="relative z-10 pt-16 pb-8">
+          {/* Top rounded edge */}
+          <div className="absolute top-0 left-0 right-0 h-8 bg-body-mustard rounded-b-[3rem]" />
           
-          {/* Bottom bar */}
-          <div className="mt-8 pt-6 border-t border-background/20 flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-background/50 text-sm font-medium">
-              © 2024 OwwJurnal. Platform Pencarian Jurnal Terlengkap
-            </p>
-            <p className="text-background/30 text-xs tracking-[0.2em] uppercase">
-              ジャーナル検索
-            </p>
+          <div className="container mx-auto px-4 mt-8">
+            <div className="grid md:grid-cols-3 gap-8 items-center">
+              {/* Left - Logo */}
+              <div className="text-center md:text-left">
+                <h3 className="text-2xl font-black text-primary-foreground tracking-tight">
+                  OwwJurnal
+                </h3>
+                <p className="text-xs text-primary-foreground/60 tracking-[0.15em] uppercase mt-1">
+                  Academic Search Platform
+                </p>
+              </div>
+              
+              {/* Center - Made with love */}
+              <div className="text-center">
+                <p className="text-primary-foreground font-bold flex items-center justify-center gap-2">
+                  Dibuat dengan <Heart className="h-5 w-5 fill-primary-foreground text-primary-foreground animate-bounce-gentle" /> untuk
+                </p>
+                <p className="text-primary-foreground/90 font-black text-lg mt-1">
+                  Mahasiswa Indonesia
+                </p>
+              </div>
+              
+              {/* Right - Decorative circles */}
+              <div className="flex justify-center md:justify-end items-center gap-2">
+                {[1, 2, 3, 4, 5, 6, 7].map((i) => (
+                  <div 
+                    key={i} 
+                    className="w-3 h-3 rounded-full bg-primary-foreground/30"
+                    style={{ opacity: 1 - (i * 0.1) }}
+                  />
+                ))}
+              </div>
+            </div>
+            
+            {/* Bottom bar */}
+            <div className="mt-12 pt-6 border-t border-primary-foreground/20 flex flex-col md:flex-row items-center justify-between gap-4">
+              <p className="text-primary-foreground/60 text-sm font-medium">
+                © 2024 OwwJurnal. Platform Pencarian Jurnal Terlengkap
+              </p>
+              <p className="text-primary-foreground/30 text-xs tracking-[0.2em] uppercase">
+                ジャーナル検索
+              </p>
+            </div>
           </div>
         </div>
       </footer>

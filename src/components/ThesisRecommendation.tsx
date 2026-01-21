@@ -70,26 +70,30 @@ export function ThesisRecommendation() {
   };
 
   return (
-    <section className="py-16 bg-body-mustard border-b-4 border-foreground relative overflow-hidden">
-      {/* Halftone pattern */}
-      <div className="absolute inset-0 halftone-pattern opacity-20 pointer-events-none" />
+    <section className="py-20 bg-body-mustard relative overflow-hidden">
+      {/* Gradient mesh background */}
+      <div className="absolute inset-0 pattern-gradient-mesh pointer-events-none opacity-50" />
+      
+      {/* Floating shapes */}
+      <div className="floating-shape floating-shape-purple w-72 h-72 -top-36 -right-36 animate-float-slow" />
+      <div className="floating-shape floating-shape-pink w-56 h-56 bottom-0 -left-28 animate-float" style={{ animationDelay: '2s' }} />
       
       <div className="container mx-auto px-4 relative z-10">
-        <Card className="bg-card border-4 border-foreground shadow-brutal max-w-3xl mx-auto">
-          <CardHeader className="text-center pb-4 border-b-2 border-foreground">
+        <Card className="glass-strong rounded-3xl shadow-soft-lg max-w-3xl mx-auto border-0 overflow-hidden">
+          <CardHeader className="text-center pb-6 border-b border-border/30">
             <div className="flex items-center justify-center gap-3 mb-4">
-              <div className="w-16 h-16 bg-primary flex items-center justify-center border-2 border-foreground shadow-brutal-sm">
+              <div className="w-16 h-16 gradient-primary flex items-center justify-center rounded-2xl shadow-glow">
                 <GraduationCap className="h-8 w-8 text-primary-foreground" />
               </div>
               <Sparkles className="h-8 w-8 text-primary animate-wiggle" />
             </div>
             
             <div className="inline-flex items-center gap-2 mb-2">
-              <div className="w-6 h-0.5 bg-foreground" />
+              <div className="w-6 h-0.5 gradient-primary rounded-full" />
               <span className="text-xs font-bold tracking-[0.15em] text-muted-foreground uppercase">
                 AI POWERED
               </span>
-              <div className="w-6 h-0.5 bg-foreground" />
+              <div className="w-6 h-0.5 gradient-primary rounded-full" />
             </div>
             
             <CardTitle className="text-3xl font-black text-foreground tracking-tight">
@@ -100,7 +104,7 @@ export function ThesisRecommendation() {
             </CardDescription>
           </CardHeader>
 
-          <CardContent className="pt-6">
+          <CardContent className="pt-8 pb-8 px-8">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="space-y-2">
                 <Label htmlFor="thesis-title" className="text-base font-bold uppercase tracking-wide">
@@ -111,7 +115,7 @@ export function ThesisRecommendation() {
                   placeholder="Contoh: Pengaruh Media Sosial terhadap Minat Baca Mahasiswa"
                   value={thesisTitle}
                   onChange={(e) => setThesisTitle(e.target.value)}
-                  className="h-14 text-base border-2 border-foreground focus-visible:ring-2 focus-visible:ring-primary font-medium"
+                  className="h-14 text-base bg-background/50 border border-border/50 rounded-xl focus-visible:ring-2 focus-visible:ring-primary font-medium"
                 />
               </div>
 
@@ -133,7 +137,7 @@ export function ThesisRecommendation() {
                       <RadioGroupItem 
                         value={option.value} 
                         id={option.value} 
-                        className="border-2 border-foreground" 
+                        className="border-2 border-border" 
                       />
                       <Label 
                         htmlFor={option.value} 
@@ -149,7 +153,7 @@ export function ThesisRecommendation() {
               <Button 
                 type="submit" 
                 disabled={isLoading}
-                className="w-full h-14 bg-primary hover:bg-primary/90 text-primary-foreground text-lg font-black border-2 border-foreground shadow-brutal-sm hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0_hsl(var(--foreground))] transition-all uppercase tracking-wide"
+                className="w-full h-14 gradient-primary text-primary-foreground text-lg font-black rounded-full shadow-glow hover:shadow-glow-lg hover:scale-[1.02] transition-all duration-300 uppercase tracking-wide"
               >
                 {isLoading ? (
                   <>
@@ -166,7 +170,7 @@ export function ThesisRecommendation() {
             </form>
 
             {aiAnalysis && (
-              <div className="mt-8 p-6 bg-muted border-2 border-foreground">
+              <div className="mt-8 p-6 glass rounded-2xl">
                 <h4 className="font-black text-primary mb-3 flex items-center gap-2 text-lg uppercase tracking-wide">
                   <Lightbulb className="h-5 w-5" />
                   Analisis AI

@@ -33,17 +33,22 @@ export function HeroSection({ searchQuery, onSearchChange, onSearch }: HeroSecti
   });
 
   return (
-    <section className="relative bg-background overflow-hidden border-b-4 border-foreground">
-      {/* Halftone pattern overlay */}
-      <div className="absolute inset-0 halftone-pattern-lg opacity-50 pointer-events-none" />
+    <section className="relative bg-background overflow-hidden">
+      {/* Gradient mesh background */}
+      <div className="absolute inset-0 pattern-gradient-mesh pointer-events-none" />
       
-      <div className="container mx-auto px-4 py-12 md:py-16 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+      {/* Floating decorative shapes */}
+      <div className="floating-shape floating-shape-pink w-96 h-96 -top-48 -left-48 animate-float-slow" />
+      <div className="floating-shape floating-shape-purple w-64 h-64 top-1/4 right-0 animate-float" style={{ animationDelay: '1s' }} />
+      <div className="floating-shape floating-shape-blue w-80 h-80 bottom-0 left-1/3 animate-float-slow" style={{ animationDelay: '2s' }} />
+      
+      <div className="container mx-auto px-4 py-16 md:py-24 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left side - Content */}
           <div className="text-left order-2 lg:order-1">
             {/* Decorative label */}
             <div className="inline-flex items-center gap-2 mb-6 animate-fade-in">
-              <div className="w-8 h-1 bg-primary" />
+              <div className="w-8 h-1 gradient-primary rounded-full" />
               <span className="text-xs font-bold tracking-[0.2em] text-muted-foreground uppercase">
                 PLATFORM PENCARIAN
               </span>
@@ -52,23 +57,23 @@ export function HeroSection({ searchQuery, onSearchChange, onSearch }: HeroSecti
             {/* Main heading - Large typography */}
             <h1 className="text-display-xl mb-2 text-foreground animate-fade-in" style={{ animationDelay: '0.1s' }}>
               <span className="block">Oww</span>
-              <span className="block text-primary">Jurnal</span>
+              <span className="block text-gradient">Jurnal</span>
             </h1>
 
-            {/* Tagline with pink underline */}
+            {/* Tagline with gradient underline */}
             <div className="mb-8 animate-fade-in" style={{ animationDelay: '0.2s' }}>
               <p className="text-lg md:text-xl text-muted-foreground font-medium max-w-lg">
                 Platform pencarian jurnal yang memudahkan 
                 <span className="relative inline-block mx-1">
                   <span className="font-bold text-foreground">mahasiswa Indonesia</span>
-                  <span className="absolute bottom-0 left-0 w-full h-1 bg-primary" />
+                  <span className="absolute bottom-0 left-0 w-full h-1 gradient-primary rounded-full" />
                 </span>
                 menemukan referensi terbaik!
               </p>
             </div>
 
-            {/* Search Box - Brutalist style */}
-            <div className="bg-card border-4 border-foreground shadow-brutal p-4 max-w-xl animate-fade-in" style={{ animationDelay: '0.3s' }}>
+            {/* Search Box - Glass style */}
+            <div className="glass-strong rounded-2xl shadow-soft-lg p-5 max-w-xl animate-fade-in" style={{ animationDelay: '0.3s' }}>
               <div className="flex flex-col sm:flex-row gap-3">
                 <div className="relative flex-1">
                   <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
@@ -78,13 +83,13 @@ export function HeroSection({ searchQuery, onSearchChange, onSearch }: HeroSecti
                     value={searchQuery}
                     onChange={(e) => onSearchChange(e.target.value)}
                     onKeyDown={handleKeyDown}
-                    className="pl-12 h-14 text-base bg-background border-2 border-foreground focus-visible:ring-2 focus-visible:ring-primary font-medium"
+                    className="pl-12 h-14 text-base bg-background/50 border border-border/50 rounded-xl focus-visible:ring-2 focus-visible:ring-primary font-medium"
                   />
                 </div>
                 <Button
                   onClick={onSearch}
                   size="lg"
-                  className="h-14 px-8 bg-primary hover:bg-primary/90 text-primary-foreground text-base font-black border-2 border-foreground shadow-brutal-sm hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0_hsl(var(--foreground))] transition-all uppercase tracking-wide"
+                  className="h-14 px-8 gradient-primary text-primary-foreground text-base font-black rounded-full shadow-glow hover:shadow-glow-lg hover:scale-105 transition-all duration-300 uppercase tracking-wide"
                 >
                   <Search className="mr-2 h-5 w-5" />
                   Cari!
@@ -92,7 +97,7 @@ export function HeroSection({ searchQuery, onSearchChange, onSearch }: HeroSecti
               </div>
             </div>
 
-            {/* Source Badges - Brutalist Style */}
+            {/* Source Badges - Pill Style */}
             <div className="flex flex-wrap items-center gap-2 mt-6 animate-fade-in" style={{ animationDelay: '0.4s' }}>
               <span className="text-xs font-bold tracking-wider text-muted-foreground uppercase mr-2">
                 SUMBER:
@@ -100,7 +105,7 @@ export function HeroSection({ searchQuery, onSearchChange, onSearch }: HeroSecti
               {sources.map((source, index) => (
                 <span
                   key={source}
-                  className="px-3 py-1.5 text-xs font-bold bg-card text-foreground border-2 border-foreground hover:bg-primary hover:text-primary-foreground transition-colors cursor-default uppercase tracking-wide"
+                  className="px-4 py-1.5 text-xs font-bold bg-card/80 text-foreground border border-border/50 rounded-full hover:bg-primary hover:text-primary-foreground hover:border-primary hover:scale-105 transition-all duration-300 cursor-default"
                   style={{ animationDelay: `${0.5 + index * 0.1}s` }}
                 >
                   {source}
@@ -109,27 +114,25 @@ export function HeroSection({ searchQuery, onSearchChange, onSearch }: HeroSecti
             </div>
           </div>
 
-          {/* Right side - Illustration with decorative frame */}
+          {/* Right side - Illustration */}
           <div className="order-1 lg:order-2 flex justify-center lg:justify-end animate-fade-in" style={{ animationDelay: '0.3s' }}>
             <div className="relative">
-              {/* Decorative frame */}
-              <div className="absolute -top-4 -left-4 w-full h-full border-4 border-primary opacity-30" />
-              <div className="absolute -bottom-4 -right-4 w-full h-full bg-primary/10" />
+              {/* Glow effect behind illustration */}
+              <div className="absolute inset-0 gradient-primary opacity-20 blur-3xl rounded-full scale-75" />
               
               {/* Main illustration container */}
-              <div className="relative w-full max-w-md lg:max-w-lg border-4 border-foreground bg-card p-4">
+              <div className="relative w-full max-w-md lg:max-w-lg glass rounded-3xl p-6 shadow-soft-lg hover:shadow-glow transition-all duration-500">
                 <HeroIllustration />
-                
-                {/* Corner decorations */}
-                <div className="absolute top-2 left-2 w-3 h-3 bg-primary" />
-                <div className="absolute top-2 right-2 w-3 h-3 bg-primary" />
-                <div className="absolute bottom-2 left-2 w-3 h-3 bg-primary" />
-                <div className="absolute bottom-2 right-2 w-3 h-3 bg-primary" />
               </div>
 
+              {/* Floating decorative elements */}
+              <div className="absolute -top-4 -right-4 w-8 h-8 gradient-primary rounded-full animate-bounce-gentle opacity-80" />
+              <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-accent rounded-full animate-bounce-gentle opacity-60" style={{ animationDelay: '0.5s' }} />
+              <div className="absolute top-1/2 -right-8 w-4 h-4 bg-warning rounded-full animate-float opacity-70" style={{ animationDelay: '1s' }} />
+
               {/* Japanese-style decorative text */}
-              <div className="absolute -right-8 top-1/2 -translate-y-1/2 text-vertical hidden lg:block">
-                <span className="text-xs font-bold tracking-[0.3em] text-muted-foreground/50">
+              <div className="absolute -right-6 top-1/2 -translate-y-1/2 text-vertical hidden lg:block">
+                <span className="text-jp-accent text-muted-foreground">
                   ジャーナル検索
                 </span>
               </div>
@@ -137,9 +140,6 @@ export function HeroSection({ searchQuery, onSearchChange, onSearch }: HeroSecti
           </div>
         </div>
       </div>
-
-      {/* Bottom decorative strip */}
-      <div className="h-2 bg-primary" />
     </section>
   );
 }
