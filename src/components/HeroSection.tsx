@@ -1,8 +1,7 @@
-import { Search } from 'lucide-react';
+import { Layers, Search, SlidersHorizontal, Sparkles } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { useTypingEffect } from '@/hooks/useTypingEffect';
-import { HeroIllustration } from './HeroIllustration';
 
 interface HeroSectionProps {
   searchQuery: string;
@@ -19,6 +18,29 @@ const placeholderPhrases = [
 ];
 
 const sources = ['Google Scholar', 'SINTA', 'Garuda', 'PubMed', 'arXiv'];
+
+const featurePreviews = [
+  {
+    title: 'Pencarian Cepat',
+    description: 'Cari judul, penulis, dan kata kunci dalam hitungan detik.',
+    icon: Search,
+  },
+  {
+    title: 'Filter Pintar',
+    description: 'Persempit hasil dengan tahun, jenis, dan topik penelitian.',
+    icon: SlidersHorizontal,
+  },
+  {
+    title: 'Multi-sumber',
+    description: 'Bandingkan referensi dari beberapa sumber dalam satu tempat.',
+    icon: Layers,
+  },
+  {
+    title: 'Rekomendasi Skripsi',
+    description: 'Dapatkan ide topik yang relevan dari hasil pencarianmu.',
+    icon: Sparkles,
+  },
+] as const;
 
 export function HeroSection({ searchQuery, onSearchChange, onSearch }: HeroSectionProps) {
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -116,13 +138,72 @@ export function HeroSection({ searchQuery, onSearchChange, onSearch }: HeroSecti
 
           {/* Right side - Illustration */}
           <div className="order-1 lg:order-2 flex justify-center lg:justify-end animate-fade-in" style={{ animationDelay: '0.3s' }}>
-            <div className="relative">
-              {/* Glow effect behind illustration */}
+            <div className="relative w-full max-w-md lg:max-w-lg">
+              {/* Glow effect behind panel */}
               <div className="absolute inset-0 gradient-primary opacity-20 blur-3xl rounded-full scale-75" />
-              
-              {/* Main illustration container */}
-              <div className="relative w-full max-w-md lg:max-w-lg glass rounded-3xl p-6 shadow-soft-lg hover:shadow-glow transition-all duration-500">
-                <HeroIllustration />
+
+              {/* Feature Preview Panel */}
+              <div className="relative glass rounded-3xl p-6 shadow-soft-lg hover:shadow-glow transition-all duration-500">
+                <div className="flex items-center justify-between gap-4 mb-5">
+                  <div>
+                    <p className="text-xs font-bold tracking-[0.2em] text-muted-foreground uppercase">
+                      FEATURE PREVIEW
+                    </p>
+                    <h2 className="text-lg font-black tracking-tight text-foreground">
+                      Semua yang kamu butuhin
+                    </h2>
+                  </div>
+                  <div className="hidden sm:flex items-center gap-2">
+                    <span className="px-3 py-1.5 text-xs font-bold bg-card/80 text-foreground border border-border/50 rounded-full">
+                      cepat
+                    </span>
+                    <span className="px-3 py-1.5 text-xs font-bold bg-card/80 text-foreground border border-border/50 rounded-full">
+                      rapi
+                    </span>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {featurePreviews.map((item, idx) => {
+                    const Icon = item.icon;
+                    return (
+                      <div
+                        key={item.title}
+                        className="group relative overflow-hidden rounded-2xl border border-border/50 bg-card/50 p-4 shadow-soft hover:shadow-soft-lg transition-all duration-300 hover:-translate-y-0.5"
+                        style={{ animationDelay: `${0.35 + idx * 0.08}s` }}
+                      >
+                        <div className="absolute inset-0 pattern-dots opacity-30" />
+                        <div className="relative">
+                          <div className="flex items-start gap-3">
+                            <div className="h-10 w-10 rounded-2xl gradient-primary flex items-center justify-center shadow-glow">
+                              <Icon className="h-5 w-5 text-primary-foreground" />
+                            </div>
+                            <div className="min-w-0">
+                              <p className="font-black text-foreground leading-tight">
+                                {item.title}
+                              </p>
+                              <p className="text-sm text-muted-foreground mt-1 leading-snug">
+                                {item.description}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+
+                {/* Tiny editorial footer note */}
+                <div className="mt-5 pt-4 border-t border-border/40 flex items-center justify-between gap-4">
+                  <p className="text-xs text-muted-foreground">
+                    Tips: tekan <span className="font-bold text-foreground">Enter</span> untuk mulai mencari.
+                  </p>
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-accent rounded-full opacity-70" />
+                    <div className="w-2 h-2 bg-warning rounded-full opacity-70" />
+                    <div className="w-2 h-2 bg-primary rounded-full opacity-70" />
+                  </div>
+                </div>
               </div>
 
               {/* Floating decorative elements */}
