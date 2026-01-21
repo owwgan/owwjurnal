@@ -68,23 +68,23 @@ export function JournalCard({ journal }: JournalCardProps) {
   };
 
   return (
-    <Card className="group bg-card border-2 border-foreground shadow-brutal-sm transition-all duration-200 hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-brutal">
+    <Card className="group glass rounded-2xl border-0 shadow-soft transition-all duration-300 hover:shadow-glow hover:-translate-y-1">
       <CardHeader className="pb-3">
         <div className="flex flex-wrap items-center gap-2 mb-2">
-          <Badge className={`${sourceColors[journal.source]} border-2 border-foreground font-bold uppercase text-xs tracking-wide`}>
+          <Badge className={`${sourceColors[journal.source]} rounded-full font-bold uppercase text-xs tracking-wide`}>
             {sourceLabels[journal.source]}
           </Badge>
           {journal.sintaAccreditation && (
-            <Badge variant="outline" className="border-2 border-primary text-primary font-bold uppercase text-xs">
+            <Badge variant="outline" className="rounded-full border-primary text-primary font-bold uppercase text-xs">
               {journal.sintaAccreditation}
             </Badge>
           )}
           {journal.researchType && (
-            <Badge variant="secondary" className="border-2 border-foreground font-bold uppercase text-xs">
+            <Badge variant="secondary" className="rounded-full font-bold uppercase text-xs">
               {journal.researchType === 'mixed' ? 'Mixed' : journal.researchType}
             </Badge>
           )}
-          <span className="ml-auto text-xs font-black text-muted-foreground bg-muted px-3 py-1 border border-foreground">
+          <span className="ml-auto text-xs font-black text-muted-foreground bg-muted/50 px-3 py-1 rounded-full">
             {journal.year}
           </span>
         </div>
@@ -107,7 +107,7 @@ export function JournalCard({ journal }: JournalCardProps) {
             variant="ghost"
             size="sm"
             onClick={() => setExpanded(!expanded)}
-            className="mt-2 text-primary hover:text-primary/80 font-bold uppercase text-xs tracking-wide"
+            className="mt-2 text-primary hover:text-primary/80 hover:bg-primary/10 font-bold uppercase text-xs tracking-wide rounded-full"
           >
             {expanded ? (
               <>
@@ -123,9 +123,9 @@ export function JournalCard({ journal }: JournalCardProps) {
           </Button>
         </div>
 
-        <div className="flex flex-wrap items-center gap-2 pt-3 border-t-2 border-foreground">
+        <div className="flex flex-wrap items-center gap-2 pt-3 border-t border-border/30">
           {journal.citations !== undefined && (
-            <span className="text-xs font-bold text-muted-foreground bg-muted px-2 py-1 border border-foreground">
+            <span className="text-xs font-bold text-muted-foreground bg-muted/50 px-3 py-1.5 rounded-full">
               📚 {journal.citations} SITASI
             </span>
           )}
@@ -134,7 +134,7 @@ export function JournalCard({ journal }: JournalCardProps) {
               href={`https://doi.org/${journal.doi}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xs font-bold text-primary hover:underline flex items-center gap-1 bg-primary/10 px-2 py-1 border border-primary"
+              className="text-xs font-bold text-primary hover:underline flex items-center gap-1 bg-primary/10 px-3 py-1.5 rounded-full transition-colors hover:bg-primary/20"
             >
               <ExternalLink className="h-3 w-3" />
               DOI
@@ -145,20 +145,20 @@ export function JournalCard({ journal }: JournalCardProps) {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button 
-                  variant="outline" 
+                  variant="ghost" 
                   size="sm" 
-                  className="gap-1 border-2 border-foreground font-bold uppercase text-xs tracking-wide hover:bg-muted"
+                  className="gap-1 font-bold uppercase text-xs tracking-wide rounded-full hover:bg-muted/50"
                 >
                   <Quote className="h-4 w-4" />
                   Sitasi
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="border-2 border-foreground">
+              <DropdownMenuContent align="end" className="rounded-xl border-border/50">
                 {citationFormats.map((format) => (
                   <DropdownMenuItem
                     key={format.id}
                     onClick={() => handleCopyCitation(format.id)}
-                    className="gap-2 font-bold"
+                    className="gap-2 font-bold rounded-lg"
                   >
                     {copiedFormat === format.id ? (
                       <Check className="h-4 w-4 text-success" />
@@ -174,7 +174,7 @@ export function JournalCard({ journal }: JournalCardProps) {
             <Button 
               size="sm" 
               onClick={handleDownload}
-              className="bg-primary hover:bg-primary/90 text-primary-foreground gap-1 border-2 border-foreground font-bold uppercase text-xs tracking-wide shadow-brutal-sm hover:translate-x-[-1px] hover:translate-y-[-1px] hover:shadow-[4px_4px_0_hsl(var(--foreground))] transition-all"
+              className="gradient-primary text-primary-foreground gap-1 font-bold uppercase text-xs tracking-wide rounded-full shadow-glow hover:shadow-glow-lg hover:scale-105 transition-all duration-300"
             >
               <Download className="h-4 w-4" />
               Download
