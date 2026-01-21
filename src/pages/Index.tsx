@@ -61,7 +61,7 @@ const Index = () => {
 
       {/* Search Results Section */}
       {isSearched && (
-        <section className="bg-body-mustard py-12">
+        <section className="bg-body-mustard py-12 border-b-4 border-foreground">
           <div className="container mx-auto px-4">
             <div className="flex justify-end mb-6">
               <SearchFilters 
@@ -92,15 +92,56 @@ const Index = () => {
       {/* AI Recommendation */}
       <ThesisRecommendation />
 
-      {/* Footer */}
-      <footer className="bg-hero-pink py-8">
-        <div className="container mx-auto px-4 text-center">
-          <p className="text-primary-foreground font-semibold flex items-center justify-center gap-2">
-            Dibuat dengan <Heart className="h-5 w-5 fill-current" /> untuk Mahasiswa Indonesia
-          </p>
-          <p className="text-primary-foreground/80 text-sm mt-2">
-            OwwJurnal - Platform Pencarian Jurnal Terlengkap
-          </p>
+      {/* Footer - Brutalist Style */}
+      <footer className="bg-foreground py-12 relative overflow-hidden">
+        {/* Halftone pattern */}
+        <div className="absolute inset-0 opacity-10 pointer-events-none">
+          <div className="absolute inset-0 halftone-pattern-lg" style={{ filter: 'invert(1)' }} />
+        </div>
+        
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="grid md:grid-cols-3 gap-8 items-center">
+            {/* Left - Logo */}
+            <div className="text-center md:text-left">
+              <h3 className="text-2xl font-black text-background tracking-tight">
+                OwwJurnal
+              </h3>
+              <p className="text-xs text-background/60 tracking-[0.15em] uppercase mt-1">
+                Academic Search Platform
+              </p>
+            </div>
+            
+            {/* Center - Made with love */}
+            <div className="text-center">
+              <p className="text-background font-bold flex items-center justify-center gap-2">
+                Dibuat dengan <Heart className="h-5 w-5 fill-primary text-primary" /> untuk
+              </p>
+              <p className="text-background/80 font-black text-lg mt-1">
+                Mahasiswa Indonesia
+              </p>
+            </div>
+            
+            {/* Right - Barcode decoration */}
+            <div className="flex justify-center md:justify-end items-end gap-[2px]">
+              {[8, 16, 4, 12, 8, 4, 16, 12, 4, 8, 16, 4, 12, 8, 16, 4, 8].map((h, i) => (
+                <div 
+                  key={i} 
+                  className="w-[3px] bg-background/30"
+                  style={{ height: `${h * 2}px` }}
+                />
+              ))}
+            </div>
+          </div>
+          
+          {/* Bottom bar */}
+          <div className="mt-8 pt-6 border-t border-background/20 flex flex-col md:flex-row items-center justify-between gap-4">
+            <p className="text-background/50 text-sm font-medium">
+              © 2024 OwwJurnal. Platform Pencarian Jurnal Terlengkap
+            </p>
+            <p className="text-background/30 text-xs tracking-[0.2em] uppercase">
+              ジャーナル検索
+            </p>
+          </div>
         </div>
       </footer>
     </div>

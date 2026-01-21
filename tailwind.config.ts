@@ -73,17 +73,20 @@ export default {
           mustard: "hsl(var(--body-mustard))",
           "mustard-light": "hsl(var(--body-mustard-light))",
         },
+        navy: "hsl(var(--navy))",
       },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
-        xl: "1.25rem",
-        "2xl": "1.5rem",
-        "3xl": "2rem",
+        xl: "0.5rem",
+        "2xl": "0.75rem",
+        "3xl": "1rem",
+        none: "0",
       },
       fontFamily: {
-        display: ["system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "sans-serif"],
+        display: ["Inter", "SF Pro Display", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "sans-serif"],
+        sans: ["Inter", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "sans-serif"],
       },
       keyframes: {
         "accordion-down": {
@@ -114,17 +117,13 @@ export default {
           "0%": { opacity: "0", transform: "scale(0.95)" },
           "100%": { opacity: "1", transform: "scale(1)" },
         },
-        "gradient-shift": {
-          "0%, 100%": { backgroundPosition: "0% 50%" },
-          "50%": { backgroundPosition: "100% 50%" },
+        "slide-in-left": {
+          "0%": { opacity: "0", transform: "translateX(-20px)" },
+          "100%": { opacity: "1", transform: "translateX(0)" },
         },
-        "spin-slow": {
-          "0%": { transform: "rotate(0deg)" },
-          "100%": { transform: "rotate(360deg)" },
-        },
-        "pulse-soft": {
-          "0%, 100%": { opacity: "0.4" },
-          "50%": { opacity: "0.8" },
+        "slide-in-right": {
+          "0%": { opacity: "0", transform: "translateX(20px)" },
+          "100%": { opacity: "1", transform: "translateX(0)" },
         },
         "count-up": {
           "0%": { opacity: "0", transform: "translateY(10px)" },
@@ -139,9 +138,8 @@ export default {
         wiggle: "wiggle 1s ease-in-out infinite",
         "fade-in-up": "fade-in-up 0.6s ease-out forwards",
         "fade-in-scale": "fade-in-scale 0.5s ease-out forwards",
-        "gradient-shift": "gradient-shift 8s ease infinite",
-        "spin-slow": "spin-slow 20s linear infinite",
-        "pulse-soft": "pulse-soft 3s ease-in-out infinite",
+        "slide-in-left": "slide-in-left 0.5s ease-out forwards",
+        "slide-in-right": "slide-in-right 0.5s ease-out forwards",
         "count-up": "count-up 0.5s ease-out forwards",
       },
     },
