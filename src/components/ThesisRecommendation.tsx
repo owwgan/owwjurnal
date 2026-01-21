@@ -81,7 +81,7 @@ export function ThesisRecommendation() {
               <Sparkles className="h-8 w-8 text-secondary animate-wiggle" />
             </div>
             <CardTitle className="text-3xl font-black text-foreground">
-              Rekomendasi AI untuk Skripsimu ✨
+              Rekomendasi AI untuk Jurnal ✨
             </CardTitle>
             <CardDescription className="text-lg text-muted-foreground">
               Masukkan judul skripsi dan jenis penelitian, AI akan mencarikan jurnal yang mendukung
