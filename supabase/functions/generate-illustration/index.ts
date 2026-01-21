@@ -26,10 +26,10 @@ serve(async (req) => {
 
     const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
 
-    // Check if illustration already exists
+    // Check if illustration already exists (anime/pastel v2)
     const { data: existingFiles } = await supabase.storage
       .from('illustrations')
-      .list('', { search: 'hero-illustration' });
+      .list('', { search: 'hero-illustration-anime' });
 
     if (existingFiles && existingFiles.length > 0) {
       const { data: publicUrl } = supabase.storage
@@ -44,18 +44,28 @@ serve(async (req) => {
 
     console.log('Generating new illustration with Lovable AI...');
 
-    const prompt = `Create an isometric 3D illustration of a young college student (wearing casual clothes like hoodie) 
-searching for academic journals on a laptop. The scene should include:
-- A modern desk with an open laptop showing a search interface with journal results
-- Stacks of colorful academic books and journal papers scattered around
-- A warm coffee cup with steam and some stationery items
-- Floating icons representing research: lightbulb, magnifying glass, graduation cap, stars
-- Color palette: warm pink (#F97316), coral orange (#FB923C), soft yellow (#FBBF24), cream white background
-- Style: Clean isometric 3D vector illustration, modern, friendly and welcoming
-- The student should look happy and engaged
-- Add subtle shadows for depth
-- No text, pure illustration
-- High quality, clean vector-style rendering with smooth gradients
+    const prompt = `Create a soft pastel anime-style illustration (kawaii, clean, modern) of a young college student
+using a laptop to search for academic journals.
+
+Scene details:
+- A cozy modern desk with an open laptop showing a generic search UI (no readable text)
+- Stacks of books and papers, tidy but lively
+- A warm coffee cup with gentle steam, and small stationery items
+- Floating cute research icons: lightbulb, magnifying glass, graduation cap, sparkles
+
+Style & mood:
+- Soft pastel anime illustration with smooth shading (not photorealistic)
+- Friendly, playful, and editorial-clean composition (magazine-like spacing)
+- Subtle glow highlights and soft shadows for depth
+- Glassmorphism-friendly look: clean shapes, airy lighting
+
+Color palette:
+- Pastel pinks, lilac, peach, soft cream, and a hint of deep navy accents
+
+Output requirements:
+- Transparent background (PNG with alpha)
+- No text
+- High quality
 - Aspect ratio 1:1 square format`;
 
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
@@ -96,7 +106,7 @@ searching for academic journals on a laptop. The scene should include:
     const base64Data = imageData.replace(/^data:image\/\w+;base64,/, '');
     const imageBuffer = Uint8Array.from(atob(base64Data), c => c.charCodeAt(0));
 
-    const fileName = `hero-illustration-${Date.now()}.png`;
+    const fileName = `hero-illustration-anime-${Date.now()}.png`;
 
     // Upload to Supabase Storage
     const { data: uploadData, error: uploadError } = await supabase.storage

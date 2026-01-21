@@ -12,7 +12,7 @@ export function HeroIllustration() {
   useEffect(() => {
     const loadIllustration = async () => {
       // Check localStorage cache first
-      const cached = localStorage.getItem('hero-illustration-url');
+      const cached = localStorage.getItem('hero-illustration-url-v2');
       if (cached) {
         setIllustrationUrl(cached);
         setIsLoading(false);
@@ -31,7 +31,7 @@ export function HeroIllustration() {
         if (data?.imageUrl) {
           console.log('Illustration loaded:', data.imageUrl);
           setIllustrationUrl(data.imageUrl);
-          localStorage.setItem('hero-illustration-url', data.imageUrl);
+          localStorage.setItem('hero-illustration-url-v2', data.imageUrl);
         } else {
           throw new Error('No image URL in response');
         }
