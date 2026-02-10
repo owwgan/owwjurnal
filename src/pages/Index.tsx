@@ -32,14 +32,16 @@ const Index = () => {
     (filters.yearFrom ? 1 : 0) +
     (filters.yearTo ? 1 : 0);
 
-  const handleSearch = () => {
-    const searchResults = searchJournals(searchQuery, {
-      sources: filters.sources,
-      sintaAccreditation: filters.sintaAccreditation,
-      yearFrom: filters.yearFrom,
-      yearTo: filters.yearTo,
-      researchType: filters.researchType,
-      language: filters.language,
+  const handleSearch = (nextFilters: SearchFiltersType = filters) => {
+    const normalizedQuery = searchQuery.trim();
+
+    const searchResults = searchJournals(normalizedQuery, {
+      sources: nextFilters.sources,
+      sintaAccreditation: nextFilters.sintaAccreditation,
+      yearFrom: nextFilters.yearFrom,
+      yearTo: nextFilters.yearTo,
+      researchType: nextFilters.researchType,
+      language: nextFilters.language,
     });
     setResults(searchResults);
     setIsSearched(true);
@@ -71,7 +73,7 @@ const Index = () => {
                 filters={filters}
                 onFiltersChange={(newFilters) => {
                   setFilters(newFilters);
-                  if (isSearched) handleSearch();
+                  if (isSearched) handleSearch(newFilters);
                 }}
                 activeFilterCount={activeFilterCount}
               />

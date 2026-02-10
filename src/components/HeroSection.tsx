@@ -43,8 +43,10 @@ const featurePreviews = [
 ] as const;
 
 export function HeroSection({ searchQuery, onSearchChange, onSearch }: HeroSectionProps) {
+  const isSearchDisabled = !searchQuery.trim();
+
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') onSearch();
+    if (e.key === 'Enter' && !isSearchDisabled) onSearch();
   };
 
   const typingPlaceholder = useTypingEffect({
@@ -110,6 +112,7 @@ export function HeroSection({ searchQuery, onSearchChange, onSearch }: HeroSecti
                 </div>
                 <Button
                   onClick={onSearch}
+                  disabled={isSearchDisabled}
                   size="lg"
                   className="h-14 px-8 gradient-primary text-primary-foreground text-base font-black rounded-full shadow-glow hover:shadow-glow-lg hover:scale-105 transition-all duration-300 uppercase tracking-wide"
                 >
